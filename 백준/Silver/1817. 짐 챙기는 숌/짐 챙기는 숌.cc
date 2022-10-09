@@ -7,27 +7,22 @@ using namespace std;
 
 int main(){
     fastio;
-    //freopen("input.txt", "r", stdin);
+  //  freopen("input.txt", "r", stdin);
 
-    int n,m,i,j,cnt=0; cin>>n>>m;
-    vector<int> a(n);
-
+    int n,m,book,acc=0,box=0; cin>>n>>m;
     for(int i=0;i<n;i++){
-        cin>>a[i];
-    }
-
-    //sort(a.begin(), a.end());
-
-    for(i=0;i<n;i++){
-        int t = a[i];
-        for(j=i+1;j<n;j++){
-            t+=a[j];
-            if(t>m) break;
+        cin>>book;
+        if(book+acc<=m){
+            acc+=book;
+        }else{
+            box+=1;
+            acc=book;
         }
-        i+=(j-i-1), cnt+=1;
     }
 
-    cout<<cnt;
+    if(acc) box+=1;
+
+    cout<<box;
 
     return 0;
 }
