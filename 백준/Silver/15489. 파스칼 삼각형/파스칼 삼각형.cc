@@ -4,30 +4,25 @@
 
 using namespace std;
 
-int a[62][62];
-void init(){
-    a[0][0] = 1;
-    a[1][0] = a[1][1] = 1;
-    for(int i=2;i<=31;i++){
-        for(int j=0;j<i+1;j++){
-            if(j==0||j==i) a[i][j] = 1;
-            else a[i][j] = a[i-1][j-1] + a[i-1][j];
-        }
-    }
-}
-
+int dp[31][31];
 int main(){
     fastio;
-    //freopen("input.txt", "r", stdin); 
+//    freopen("input.txt", "r", stdin); 
 
     int r,c,w,sum=0; 
     cin>>r>>c>>w;
-
-    init();
     
+    dp[1][1] = 1;
+    for(int i=1;i<=30;i++){
+        for(int j=1;j<=i;j++){
+            if(j==1||j==i)  dp[i][j] = 1;
+            else dp[i][j] = dp[i-1][j-1] + dp[i-1][j];
+        }
+    }
+
     for(int i=0;i<w;i++){
-        for(int j=c-1; j<c+i; j++){
-            sum+=a[r-1+i][j];
+        for(int j=0;j<=i;j++){
+            sum+=dp[r+i][c+j];
         }
     }
 
