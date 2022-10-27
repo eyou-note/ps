@@ -23,7 +23,7 @@ int main(){
         lights[i] = {D,R,G};
     }
 
-    for(int i=1;i<=L;i++){
+    for(int i=1;i<L;i++){
         if(i == lights[idx].pos){
             int r = time%(lights[idx].red + lights[idx].green);
             if(r < lights[idx].red){
@@ -37,7 +37,7 @@ int main(){
         }
     }
 
-    cout<<time-1;
+    cout<<time;
 
 
     
