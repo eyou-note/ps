@@ -7,7 +7,6 @@ using namespace std;
 
 int n, m; 
 int a[8], b[8];
-bool chk[8];
 
 void dfs(int idx, int cnt){
     if(cnt==m){
@@ -28,7 +27,6 @@ void dfs(int idx, int cnt){
 
 int main(){
     fastio;
-    //("input.txt", "r", stdin);  
 
     cin>>n>>m;
 
