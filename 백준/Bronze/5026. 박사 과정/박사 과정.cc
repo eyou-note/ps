@@ -16,16 +16,16 @@ int main(){
         cin>>s;
         int pos = 0;
         string a,b;
-        
-        while(s[pos]!='+' && s[pos]!= '='){
-            a.push_back(s[pos++]);
-        }
-        
-        if(s[pos++] == '='){
+
+        if(s == "P=NP"){
             cout<<"skipped"<<endl;
             continue;
         }
-
+        
+        while(s[pos]!='+'){
+            a.push_back(s[pos++]);
+        }
+        
         while(pos<s.size()){
             b.push_back(s[pos++]);
         }
