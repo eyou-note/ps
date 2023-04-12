@@ -9,7 +9,7 @@ vector<int> solution(int n, int s) {
         return {-1};
     }
 
-    int q = s/n, r=s%n, add = (r==0)? 0 : 1;
+    int q = s/n, r=s%n;
     
     for(int i=n-1;i>=0;i--){
         res[i] = q;
