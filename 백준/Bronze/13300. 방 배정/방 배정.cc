@@ -9,7 +9,7 @@ using namespace std;
 int room[7][2];
 int main(){
     fastio;
-  //  freopen("input.txt", "r", stdin);
+    //freopen("input.txt", "r", stdin);
 
 	int n,k,gender,grade,cnt=0;
 	cin>>n>>k;
@@ -19,12 +19,15 @@ int main(){
 		room[grade][gender] += 1;
 	}
 
-	for(int i=1;i<=6;i++){
-		if(room[i][0] != 0)
-			cnt += (room[i][0]/k == 0) ? 1 : ceil( (double)room[i][0]/k );
 
-		if(room[i][1] != 0)
-			cnt += (room[i][1]/k == 0) ? 1 : ceil( (double)room[i][1]/k );
+	for(int i=1;i<=6;i++){
+		for(int j=0;j<2;j++){
+			if(room[i][j] !=0 ){
+				cnt += room[i][j]/k;
+				if(room[i][j] % k != 0)
+					cnt+=1;
+			}
+		}
 	}
 
 	cout<<cnt;
