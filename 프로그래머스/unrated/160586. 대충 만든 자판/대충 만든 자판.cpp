@@ -4,32 +4,33 @@
 
 using namespace std;
 
-vector<int> solution(vector<string> keys, vector<string> str) {
-    vector<int> ans;
-    map<char, int> k_cnt;   
+vector<int> solution(vector<string> keymap, vector<string> targets) {
+    vector<int> answer;
+	map<char, int> key_info;
 
-    for(auto k : keys){
-        for(int i=0;i<k.size();i++){
-            if(k_cnt.find( k[i] ) == k_cnt.end()){
-                k_cnt[k[i]] =  i+1;
-            }else{
-                k_cnt[k[i]] = min(k_cnt[k[i]], i+1);
-            }
-        }
-    }
+	for(auto key : keymap){
+		for(int i=0;i<key.size();i++){
+			if(key_info.find(key[i]) == key_info.end()){
+				key_info.insert({key[i], i+1});
+			}else{
+				if(key_info[key[i]] > i+1)
+					key_info[key[i]] = i+1;
+			}
+		}
+	}
 
-    for(auto s : str){
-        int cnt=0;
-        for(int i=0;i<s.size();i++){
-            if(k_cnt.find(s[i]) == k_cnt.end()){
-                cnt = -1;
-                break;
-            }
+	for(auto t : targets){
+		int sum = 0, found = 1;
+		for(int i=0;i<t.size();i++){
+			if(key_info.find(t[i]) == key_info.end()){
+				sum = -1, found = 0;
+				break;
+			}
+			sum += key_info[t[i]];
+		}
 
-            cnt+= k_cnt.find(s[i])->second;
-        }
-        ans.push_back(cnt);
-    }
-
-    return ans;
+		answer.push_back(sum);
+	
+	}
+    return answer;
 }
