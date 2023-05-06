@@ -3,55 +3,49 @@
 
 using namespace std;
 
-pair<int, int> get_direction(int d){
-    if(d == 'S') return {1, 0};
-    else if(d == 'N') return {-1, 0};
-    else if(d == 'E') return {0, 1};
-    else return {0, -1};
-}
-
-vector<int> get_start_pos(vector<string>& park){
-    vector<int> result;
-    bool found = false;
-    for(int i=0;i<park.size();i++){
-        for(int j=0;j<park[i].size();j++){
-            if(park[i][j] == 'S'){
-                result = {i,j};
-                found = true;
-                break;
-            }
-        }
-        if(found) break;
-    }
-    return result;
-}
-
-//pair 말구 vector로 자료구조 맞춰주는게 좋을듯 하다;;
 vector<int> solution(vector<string> park, vector<string> routes) {
-    vector<int> cur_pos=get_start_pos(park); 
-    int end = park[0].size();
+	pair<int,int> cur;
+	int h  = park.size(), w = park[0].size();
+	for(int i=0;i<h;i++) { 
+		for(int j=0;j<w;j++){
+			if(park[i][j] == 'S')
+				cur = {i,j};
+		}
+	}
 
-    for(auto r : routes){
-        pair<int, int> move = get_direction(r[0]);
-        int loop = r[2]-'0';
+	for(auto r : routes){	
+		char d = r[0];
+		int n = r[2]-'0';
 
-        bool wall = false;
-        pair<int,int> tmp_pos = {cur_pos[0], cur_pos[1]};
-        for(int i=0;i<loop;i++){
-            int nx = tmp_pos.first + move.first,
-                ny = tmp_pos.second + move.second;
-            
-            if(park[nx][ny] == 'X' 
-                || nx <0 || ny<0 || nx >= end ||ny >= end) {
-                wall = true;
-                break;
-            }
-            tmp_pos = {nx, ny};
-        }
-        if(!wall) 
-            cur_pos = {tmp_pos.first, tmp_pos.second};
-    }
+		int nx  = cur.first, ny = cur.second;
+		int valid = 1;
+		if(d == 'N' || d == 'S'){
+			int add = (d == 'S')  ?  1 : -1;
+			
+			for(int i=0;i<n;i++){
+				nx += add;
+				if(nx<0 || nx >=h || park[nx][ny] == 'X') {
+					valid = 0;
+					break;
+				}
+			}
 
-    return cur_pos;
+		}else{
+			int add = (d == 'E')  ?  1 : -1;
+			
+			for(int i=0;i<n;i++){
+				ny += add;
+				if(ny<0 || ny >=w || park[nx][ny] == 'X') {
+					valid = 0;
+					break;
+				}
+			}
+
+		}
+
+		if( valid ) 
+			cur = {nx,ny};
+	}
+
+    return {cur.first, cur.second};
 }
-
