@@ -1,10 +1,10 @@
 # [unrated] 명예의 전당 (1) - 138477 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/138477?language=cpp) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/138477?language=java) 
 
 ### 성능 요약
 
-메모리: 4.21 MB, 시간: 0.01 ms
+메모리: 75.1 MB, 시간: 0.81 ms
 
 ### 구분
 
@@ -12,7 +12,7 @@
 
 ### 채점결과
 
-<br/>정확성: 100.0<br/>합계: 100.0 / 100.0
+Empty
 
 ### 문제 설명
 
